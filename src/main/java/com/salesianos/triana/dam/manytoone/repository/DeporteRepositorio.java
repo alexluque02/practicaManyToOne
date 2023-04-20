@@ -2,6 +2,8 @@ package com.salesianos.triana.dam.manytoone.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface DeporteRepositorio extends JpaRepository<DeporteRepositorio, Integer>{
+import com.salesianos.triana.dam.manytoone.model.Deporte;
+
+public interface DeporteRepositorio extends JpaRepository<Deporte, Integer>{
 
 }

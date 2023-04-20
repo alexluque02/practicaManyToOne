@@ -3,6 +3,7 @@ package com.salesianos.triana.dam.manytoone.model;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,7 +21,7 @@ import lombok.NoArgsConstructor;
 public class Pista {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	private int numero;
@@ -30,4 +31,13 @@ public class Pista {
 	@JoinColumn(foreignKey = @ForeignKey (name="fk_deporte_pista"))
 	private Deporte deporte;
 	
+	public void addToDeporte(Deporte deporte) {
+		this.deporte=deporte;
+		deporte.getPistas().add(this);
+	}
+	
+	public void removeFromDeporte(Deporte deporte) {
+		deporte.getPistas().remove(this);
+		this.deporte=null;
+	}
 }
